@@ -1,13 +1,21 @@
 ### Forum app
-<ul>
-<li>Clone the project</li>
-    <li>Go to the folder application using cd command on your cmd or terminal</li>
-    <li>Run `composer install` on your cmd or terminal</li>
-    <li>Copy `.env.example` file to `.env` on the root folder.</li>
-    <li>Run `php artisan key:generate`</li>
-    <li>Run `php artisan migrate`</li>
-    <li>Run `npm i`</li>
-    <li>Run `php artisan serve`</li>
-    <li>Run `npm run dev`</li>
-    <li>Go to `http://localhost:8000/`</li>
-</ul>
+
+Clone the project
+
+Go to the folder application using cd command on your cmd or terminal
+
+Run `composer install` on your cmd or terminal
+
+Copy `.env.example` file to `.env` on the root folder.
+
+Run `php artisan key:generate`
+
+Run `php artisan migrate`
+
+Run `npm i`
+
+Run `php artisan serve`
+
+Run `npm run dev`
+
+Go to `http://localhost:8000/`
