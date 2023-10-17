@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StagiaireController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+
+
 
 
 Route::get('/', function () {
@@ -32,8 +35,16 @@ Route::get('/contact', function () {
 
 // Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/import', [StagiaireController::class, "index"]);
 Route::post('/import', [StagiaireController::class, "import"])->name('importCSV');
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/upload_cv', [HomeController::class, 'index'])->name('upload_cv');
+
+
+
