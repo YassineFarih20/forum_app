@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('entreprises', function (Blueprint $table) {
             $table->id();
             $table->string('nom')->unique();
-            $table->text('adresse')->nullable();
-            $table->unsignedBigInteger('filiere_id'); // Ajoutez le champ filiere_id
-    
+            $table->text('bio')->nullable();
+            $table->string('siteweb')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
-    
-            $table->foreign('filiere_id')->references('id')->on('filieres'); // Clé étrangère vers la table filieres
         });
     }
 
