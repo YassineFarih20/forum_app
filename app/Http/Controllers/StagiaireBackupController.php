@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\imports\StagiairesImport;
+use App\Exports\StagiairesExport;
 
-class StagiaireController extends Controller
+
+class StagiaireBackupController extends Controller
 {
     public function index()
     {
-        return view('importCSV');
+        return view('backup');
     }
 
     public function import(Request $request)
@@ -19,8 +21,9 @@ class StagiaireController extends Controller
         Excel::import(new StagiairesImport, $file);
         return back()->with('success', 'Stagiaires imported successfully.');
     }
+
     public function export()
     {
-        return Excel::download(new StagiairesImport, 'stagiaires.xlsx');
+        return Excel::download(new StagiairesExport, 'stagiaires.csv');
     }
 }
