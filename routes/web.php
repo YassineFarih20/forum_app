@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StagiaireController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin;
+use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
@@ -32,7 +34,19 @@ Route::get('/contact', function () {
 
 // Auth::routes();
 
+
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::post('admin',[Admin::class, "index"])->name('admin');
+
+
+
+Route::get('/loginadmin',function(){
+    return view('LoginAdmin');
+});
+
 
 
 Route::get('/import', [StagiaireController::class, "index"]);
