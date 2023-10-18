@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StagiaireController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\StagiaireBackupController;
 use App\Http\Controllers\StaticController;
 
@@ -28,6 +29,18 @@ Route::get('/invitation', function () {
 
 
 // Auth::routes();
+
+
+
+
+
+Route::post('admin',[Admin::class, "index"])->name('admin');
+
+Route::get('/loginadmin',function(){
+    return view('LoginAdmin');
+});
+
+
 
 
 
