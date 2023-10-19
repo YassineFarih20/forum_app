@@ -1,50 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('title', 'Ticket')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
-    <style>
-        #logo {
-            width: 100px;
-            height: 40px;
-        }
-
-        #title {
-            font-family: sans-serif;
-            font-size: 20px;
-            text-transform: capitalize;
-            font-weight: bold;
-
-        }
-
-        #info_login {
-
-            margin-right: 60px;
-        }
-
-        #text {
-
-            font-size: 20px;
-            font-weight: 600;
-
-        }
-
-        #Location {
-
-            /* margin-top: 25px; */
-            font-family: sans-serif;
-            margin-top: 5px;
-            font-weight: 600;
-
-        }
-    </style>
-</head>
-
-<body>
     <main id="pdfContent" class="flex  h-screen flex-col">
         <section class="w-full flex-grow flex items-center justify-center p-4">
             <div class="flex w-full max-w-3xl text-zinc-900 h-64">
@@ -58,8 +15,7 @@
                     <div class="absolute rounded-full w-8 h-8 bg-white -top-5"></div>
                     <div class="absolute rounded-full w-8 h-8 bg-white -bottom-5"></div>
                 </div>
-                <div
-                    class="h-full py-8 px-10 bg-slate-200	 flex-grow rounded-r-3xl flex justify-content-start bg-primary flex-col">
+                <div class="h-full px-10 bg-slate-200 flex-grow rounded-r-3xl flex justify-content-start flex-col">
                     <div class="flex w-full justify-between items-center">
 
                         <h1 id="title">ticket invitation</h1>
@@ -67,24 +23,13 @@
                         <div class="flex flex-col  items-start">
                             <img id="logo" src="./logo.png" alt="">
                         </div>
-
-
-
                     </div>
                     <div class="d-flex flex-column ">
-
-
-
-
                         <h2 id="text" class="text-zinc-500">Location:</h2>
-
-
                         <p id="Location">Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. </p>
-
-
                     </div>
-                    <div class="flex w-full mt-auto justify-between">
+                    <div class="flex w-full  justify-between">
                         <div class="flex flex-col">
                             <span class="text-xs text-zinc-400">Date</span>
                             <span class="font-mono">09/06/2023</span>
@@ -110,13 +55,11 @@
         class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         onclick="generatePDF()">PDF</button>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
     <script>
         function generatePDF() {
             var element = document.getElementById("pdfContent");
             html2pdf(element);
         }
     </script>
-</body>
-
-
-</html>
+@endsection

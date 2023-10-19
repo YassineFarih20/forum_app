@@ -12,7 +12,7 @@ class StagiaireBackupController extends Controller
 {
     public function index()
     {
-        return view('backup');
+        return view('admin.backup');
     }
 
     public function import(Request $request)

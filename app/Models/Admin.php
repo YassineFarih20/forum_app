@@ -12,6 +12,8 @@ class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'admins';
+
     public function hasRole($role)
     {
         return $this->role === (int) $role;

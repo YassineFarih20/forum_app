@@ -1,23 +1,14 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div >
-        <!-- Formulaire d'upload de CV -->
-        <form method="POST" action="" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="cv" accept=".pdf, .doc, .docx">
-            <button type="submit">Envoyer CV</button>
-        </form>
+@extends('layouts.app')
+@section('title', 'Upload cv')
+@section('content')
+    <div class="container-xxl bg-white p-0">
+        <div class="centered-content">
+            <p class="fs-4">Bonjour {{ auth('stagiaire')->user()->prenom }} {{ auth('stagiaire')->user()->nom }}</p>
+            <form method="POST" action="" enctype="multipart/form-data" class="custom-input">
+                @csrf
+                <input class="form-control" type="file" name="cv" accept=".pdf, .doc, .docx">
+                <button class="btn btn-primary mb-3 mx-5" type="submit" style="margin-top: 10px;">Envoyer CV</button>
+            </form>
+        </div>
     </div>
-    
-</body>
-</html>
-
-
+@endsection

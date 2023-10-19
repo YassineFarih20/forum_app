@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StagiaireController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StagiaireBackupController;
 use App\Http\Controllers\StaticController;
 
@@ -31,29 +29,28 @@ Route::get('/invitation', function () {
 // Auth::routes();
 
 
-
-
-
-Route::post('admin',[Admin::class, "index"])->name('admin');
-
-Route::get('/loginadmin',function(){
-    return view('LoginAdmin');
-});
+Route::get('/lolololol', function () {
+    return view('ticket');
+})->name('invitation');
 
 
 
 
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [StagiaireController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [StagiaireController::class, 'login']);
+Route::get('/logout', [StagiaireController::class, 'logout'])->name('logout');
 Route::get('/upload_cv', [HomeController::class, 'index'])->name('upload_cv');
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [AdminController::class, "index"])->name('index');
+    Route::get('/dashboard', [AdminController::class, "dashboard"])->name('dashboard');
+    Route::post('/auth', [AdminController::class, "handleLogin"])->name('login');
+    Route::post('/logout', [AdminController::class, "logout"])->name('logout');
+});
 
-
-
-Route::group(['prefix' => 'backup', 'as' => 'backup.', 'middleware' => ['role:1']], function () {
+Route::group(['prefix' => 'backup', 'as' => 'backup.'], function () {
     Route::get('/', [StagiaireBackupController::class, "index"]);
-    Route::post('/import', [StagiaireBackupController::class, "import"])->name('import');
-    Route::get('/export', [StagiaireBackupController::class, "export"])->name('export');
+    Route::post('/import', [StagiaireBackupController::class, "import"])->middleware('role:1')->name('import');
+    Route::get('/export', [StagiaireBackupController::class, "export"])->middleware('role:1')->name('export');
 });
