@@ -26,9 +26,9 @@
                     <div class="nav-item  @if ($menu === '31') active @endif dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inscription</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="{{ route('inscription') }}" class="dropdown-item">S'inscrire</a>
-                            <a href="{{ route('reservationrdv') }}" class="dropdown-item">Prise de RDV</a>
-                            <a href="{{ route('invitation') }}" class="dropdown-item">Imprimer invitation</a>
+                            <a href="#" class="dropdown-item">S'inscrire</a>
+                            <a href="#" class="dropdown-item">Prise de RDV</a>
+                            <a href="#" class="dropdown-item">Imprimer invitation</a>
                         </div>
                     </div>
 

@@ -21,26 +21,18 @@ Route::get('/reservationrdv', function () {
     return view('reservationrdv');
 })->name('reservationrdv');
 
-Route::get('/invitation', function () {
-    return view('invitation');
-})->name('invitation');
 
+// Stagiaire Routes
+Route::get('/login', [StagiaireController::class, 'loginIndex'])->name('login');
+Route::post('/login', [StagiaireController::class, 'login'])->name('login.action');
+Route::post('/logout', [StagiaireController::class, 'logout'])->name('logout');
+Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => 'auth:stagiaire'], function () {
+    Route::get('/', [StagiaireController::class, 'profile'])->name('index');
+    Route::get('/invitation', [StagiaireController::class, 'invitation'])->name('invitation');
+    Route::get('/cv', [StagiaireController::class, 'cvIndex'])->name('cvIndex');
+    Route::post('/cvupload', [StagiaireController::class, 'cvUpload'])->name('cvUpload');
+});
 
-// Auth::routes();
-
-
-Route::get('/lolololol', function () {
-    return view('ticket');
-})->name('invitation');
-
-
-
-
-
-Route::get('/login', [StagiaireController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [StagiaireController::class, 'login']);
-Route::get('/logout', [StagiaireController::class, 'logout'])->name('logout');
-Route::get('/upload_cv', [HomeController::class, 'index'])->name('upload_cv');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [AdminController::class, "index"])->name('index');
