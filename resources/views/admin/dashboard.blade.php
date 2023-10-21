@@ -5,7 +5,7 @@
     {{ Auth::user()->name }}
     <br>
     {{ Auth::user()->email }}
-    <form action="{{ route('admin.logout') }}">
+    <form action="{{ route('admin.logout') }}" method="POST">
         @csrf
         <button class="btn btn-success">logout</button>
     </form>

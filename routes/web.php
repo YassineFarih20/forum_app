@@ -26,7 +26,7 @@ Route::get('/reservationrdv', function () {
 Route::get('/login', [StagiaireController::class, 'loginIndex'])->name('login');
 Route::post('/login', [StagiaireController::class, 'login'])->name('login.action');
 Route::post('/logout', [StagiaireController::class, 'logout'])->name('logout');
-Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => 'auth:stagiaire'], function () {
+Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
     Route::get('/', [StagiaireController::class, 'profile'])->name('index');
     Route::get('/invitation', [StagiaireController::class, 'invitation'])->name('invitation');
     Route::get('/cv', [StagiaireController::class, 'cvIndex'])->name('cvIndex');
@@ -34,15 +34,16 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => 'auth:s
 });
 
 
+// Admin Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [AdminController::class, "index"])->name('index');
     Route::get('/dashboard', [AdminController::class, "dashboard"])->name('dashboard');
-    Route::post('/auth', [AdminController::class, "handleLogin"])->name('login');
+    Route::post('/auth', [AdminController::class, "handleLogin"])->name('handleLogin');
     Route::post('/logout', [AdminController::class, "logout"])->name('logout');
-});
 
-Route::group(['prefix' => 'backup', 'as' => 'backup.'], function () {
-    Route::get('/', [StagiaireBackupController::class, "index"]);
-    Route::post('/import', [StagiaireBackupController::class, "import"])->middleware('role:1')->name('import');
-    Route::get('/export', [StagiaireBackupController::class, "export"])->middleware('role:1')->name('export');
+    Route::group(['prefix' => 'backup', 'as' => 'backup.'], function () {
+        Route::get('/', [StagiaireBackupController::class, "index"]);
+        Route::post('/import', [StagiaireBackupController::class, "import"])->middleware('role:1')->name('import');
+        Route::get('/export', [StagiaireBackupController::class, "export"])->middleware('role:1')->name('export');
+    });
 });

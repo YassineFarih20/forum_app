@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth")->except(['index', 'handleLogin']);
+    }
     public function index()
     {
         return view('admin.login');

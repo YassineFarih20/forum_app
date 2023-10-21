@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
     ];
 
     protected $middlewareAliases = [
+        'validateCv' => \App\Http\Middleware\ValidateCvMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

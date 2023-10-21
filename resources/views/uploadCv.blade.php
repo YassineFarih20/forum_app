@@ -7,6 +7,9 @@
             <form method="POST" action="{{ route('profile.cvUpload') }}" enctype="multipart/form-data" class="custom-input">
                 @csrf
                 <input class="form-control" type="file" name="cv" accept=".pdf, .doc, .docx">
+                @error('cv')
+                    {{ $message }}
+                @enderror
                 <button class="btn btn-primary mb-3 mx-5" type="submit" style="margin-top: 10px;">Envoyer CV</button>
             </form>
         </div>

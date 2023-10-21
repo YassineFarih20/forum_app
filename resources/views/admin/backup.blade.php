@@ -2,7 +2,7 @@
 @section('title', 'Stagiaires backup')
 @section('content')
 
-    <form action="{{ route('backup.import') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.backup.import') }}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
         <button type="submit">Import</button>
@@ -12,5 +12,5 @@
         <div class="w-50 alert alert-success m-auto mt-5"> {{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('backup.export') }}">Export</a>
+    <a href="{{ route('admin.backup.export') }}">Export</a>
 @endsection
