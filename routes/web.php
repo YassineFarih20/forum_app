@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StagiaireController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StagiaireActionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StagiaireBackupController;
 use App\Http\Controllers\StaticController;
@@ -23,14 +24,14 @@ Route::get('/reservationrdv', function () {
 
 
 // Stagiaire Routes
-Route::get('/login', [StagiaireController::class, 'loginIndex'])->name('login');
-Route::post('/login', [StagiaireController::class, 'login'])->name('login.action');
-Route::post('/logout', [StagiaireController::class, 'logout'])->name('logout');
+Route::get('/login', [StagiaireActionController::class, 'loginIndex'])->name('login');
+Route::post('/login', [StagiaireActionController::class, 'login'])->name('login.action');
+Route::post('/logout', [StagiaireActionController::class, 'logout'])->name('logout');
 Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
-    Route::get('/', [StagiaireController::class, 'profile'])->name('index');
-    Route::get('/invitation', [StagiaireController::class, 'invitation'])->name('invitation');
-    Route::get('/cv', [StagiaireController::class, 'cvIndex'])->name('cvIndex');
-    Route::post('/cvupload', [StagiaireController::class, 'cvUpload'])->name('cvUpload');
+    Route::get('/', [StagiaireActionController::class, 'profile'])->name('index');
+    Route::get('/invitation', [StagiaireActionController::class, 'invitation'])->name('invitation');
+    Route::get('/cv', [StagiaireActionController::class, 'cvIndex'])->name('cvIndex');
+    Route::post('/cvupload', [StagiaireActionController::class, 'cvUpload'])->name('cvUpload');
 });
 
 
@@ -40,10 +41,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [AdminController::class, "dashboard"])->name('dashboard');
     Route::post('/auth', [AdminController::class, "handleLogin"])->name('handleLogin');
     Route::post('/logout', [AdminController::class, "logout"])->name('logout');
-
     Route::group(['prefix' => 'backup', 'as' => 'backup.'], function () {
-        Route::get('/', [StagiaireBackupController::class, "index"]);
+        Route::get('/', [StagiaireBackupController::class, "index"])->name('index');
         Route::post('/import', [StagiaireBackupController::class, "import"])->name('import');
         Route::get('/export', [StagiaireBackupController::class, "export"])->name('export');
     });
 });
+
+
+// Stagiaires list
+Route::resource('stagiaires', StagiaireController::class);
+Route::post('/cv/download', [AdminController::class, 'downloadCv'])->name('downloadCV');
+Route::post('/cv/view', [AdminController::class, 'viewCv'])->name('viewCV');

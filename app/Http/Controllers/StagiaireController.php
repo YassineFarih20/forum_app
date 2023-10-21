@@ -3,67 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stagiaire;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class StagiaireController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware("auth:stagiaire")->except(['loginIndex', 'login']);
-        $this->middleware("validateCv")->only('cvUpload');
-        $this->middleware("stagiaireLogin")->only('login');
+        $this->middleware("auth");
     }
-    public function loginIndex()
+    public function index()
     {
-        return view('auth.login');
+        return view("stagiaires.index", ["stagiaires" => stagiaire::all()]);
     }
-    public function invitation()
-    {
-        return view('invitation');
-    }
-    public function profile()
-    {
-        return view('profile');
-    }
-    public function cvIndex()
-    {
-        return view('uploadCv');
-    }
-    public function cvUpload(Request $request)
-    {
-        if ($request->hasFile('cv')) {
-            $file = $request->file('cv');
-            $user = Stagiaire::where('email', auth('stagiaire')->user()->email)->first();
-            if ($user->cv) {
-                $path = Storage::disk('resumes')->delete($user->cv);
-            }
-            $path = Storage::disk('resumes')->putFileAs('/', $file, str()->uuid() . '.' . $file->extension());
-            $user->cv = $path;
-            $user->save();
 
-            return redirect()->route('profile.invitation');
-        } else return redirect()->back()->withErrors(['error' => 'ERRRRRRRRRRRRRRRRRRRRRR']);
-    }
-    public function login(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        if (auth('stagiaire')->attempt($request->only('email', 'password'))) {
-            if (!auth('stagiaire')->user()->status) {
-                $user = Stagiaire::where('email', $request->only('email'))->first();
-                $user->status = 1;
-                $user->save();
-            }
-            return redirect()->route('profile.cvIndex');
-        } else
-            return redirect()->route('login')->with('error', 'Connexion échouée. Vérifiez vos informations.');
+        //
     }
-    public function logout(Request $request)
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
-        Auth::guard('stagiaire')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($stagiaire)
+    {
+        return view("stagiaires.show", ["stagiaire" => stagiaire::findOrFail($stagiaire)]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Stagiaire $stagiaire)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Stagiaire $stagiaire)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Stagiaire $stagiaire)
+    {
+        //
     }
 }

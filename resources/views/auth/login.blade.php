@@ -1,11 +1,8 @@
-@extends('layouts.master', ['menu' => '0'])
+@extends('layouts.master', ['active' => Route::currentRouteName()])
 @section('title', 'Connexion')
 @section('content')
 
-
-
     <!-- debut Login -->
-
 
     <div class="container">
         <div class="row justify-content-center">

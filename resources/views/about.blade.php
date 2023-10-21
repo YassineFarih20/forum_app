@@ -1,4 +1,4 @@
-@extends('layouts.master', ['menu' => '2'])
+@extends('layouts.master', ['active' => Route::currentRouteName()])
 @section('title', 'Objectifs')
 @section('content')
 

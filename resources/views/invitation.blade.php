@@ -6,7 +6,7 @@
             <div class="flex w-full max-w-3xl text-zinc-900 h-64">
                 <div class="h-full bg-slate-200	 flex items-center justify-center px-8 rounded-l-3xl">
                     <div id="qrCode">
-                        {!! QrCode::size(180)->generate(route('profile.index') . '/' . auth('stagiaire')->user()->id) !!}
+                        {!! QrCode::size(180)->generate(route('stagiaires.show', ['stagiaire' => auth('stagiaire')->user()->id])) !!}
                     </div>
                 </div>
                 <div

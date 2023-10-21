@@ -1,4 +1,4 @@
-@extends('layouts.master', ['menu' => '49'])
+@extends('layouts.app')
 @section('title', 'Login Admin')
 @section('content')
 

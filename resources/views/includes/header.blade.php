@@ -20,10 +20,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{ route('index') }}"
-                        class="nav-item nav-link  @if ($menu === '1') active @endif">Acceuil</a>
+                        class="nav-item nav-link  @if ($active === 'index') active @endif">Acceuil</a>
                     <a href="{{ route('about') }}"
-                        class="nav-item nav-link @if ($menu === '2') active @endif">Objectifs</a>
-                    <div class="nav-item  @if ($menu === '31') active @endif dropdown">
+                        class="nav-item nav-link @if ($active === 'about') active @endif">Objectifs</a>
+                    <div class="nav-item  @if ($active === '31') active @endif dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inscription</a>
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="#" class="dropdown-item">S'inscrire</a>
@@ -31,15 +31,12 @@
                             <a href="#" class="dropdown-item">Imprimer invitation</a>
                         </div>
                     </div>
-
                     <a href="{{ route('contact') }}"
-                        class="nav-item nav-link @if ($menu === '4') active @endif">Contact</a>
+                        class="nav-item nav-link @if ($active === 'contact') active @endif">Contact</a>
                 </div>
-
-                @if ($menu !== '0')
+                @if ($active !== 'login')
                     <a href="{{ route('login') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Se
                         connecter<i class="fa fa-arrow-right ms-3"></i></a>
                 @endif
             </div>
         </nav>
-        <!-- Navbar End -->
