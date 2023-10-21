@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::group(['prefix' => 'backup', 'as' => 'backup.'], function () {
         Route::get('/', [StagiaireBackupController::class, "index"]);
-        Route::post('/import', [StagiaireBackupController::class, "import"])->middleware('role:1')->name('import');
-        Route::get('/export', [StagiaireBackupController::class, "export"])->middleware('role:1')->name('export');
+        Route::post('/import', [StagiaireBackupController::class, "import"])->name('import');
+        Route::get('/export', [StagiaireBackupController::class, "export"])->name('export');
     });
 });

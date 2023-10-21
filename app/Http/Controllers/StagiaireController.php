@@ -12,9 +12,9 @@ class StagiaireController extends Controller
 
     public function __construct()
     {
-        $this->middleware("auth:stagiaire")->except('loginIndex');
+        $this->middleware("auth:stagiaire")->except(['loginIndex', 'login']);
         $this->middleware("validateCv")->only('cvUpload');
-        $this->middleware("validateLogin")->only('login');
+        $this->middleware("stagiaireLogin")->only('login');
     }
     public function loginIndex()
     {
