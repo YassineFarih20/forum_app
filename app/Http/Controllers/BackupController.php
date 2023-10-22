@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\imports\StagiairesImport;
 use App\Exports\StagiairesExport;
+use App\imports\EntreprisesImport;
+use App\Exports\EntreprisesExport;
 
 
-class StagiaireBackupController extends Controller
+class BackupController extends Controller
 {
     public function __construct()
     {
@@ -19,15 +21,27 @@ class StagiaireBackupController extends Controller
         return view('admin.backup');
     }
 
-    public function import(Request $request)
+    public function importStagiaires(Request $request)
     {
         $file = $request->file('file');
         Excel::import(new StagiairesImport, $file);
         return back()->with('success', 'Stagiaires imported successfully.');
     }
 
-    public function export()
+    public function exportStagiaires()
     {
         return Excel::download(new StagiairesExport, 'stagiaires.csv');
+    }
+
+    public function importEntreprises(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new EntreprisesImport, $file);
+        return back()->with('success', 'Entreprises imported successfully.');
+    }
+
+    public function exportEntreprises()
+    {
+        return Excel::download(new EntreprisesExport, 'entreprises.csv');
     }
 }

@@ -22,10 +22,12 @@ return new class extends Migration
             $table->date('dateNaissance');
             $table->string('telephone')->nullable();
             $table->string('filiere');
+            $table->string('etablissement_id');
             $table->string('cv')->nullable();
             $table->string('password');
             $table->tinyInteger('status')->default(0);
             // 0 : not activated || 1: activated || 2: attended
+            $table->foreign('etablissement_id')->references('id')->on('etablissements');
             $table->timestamps();
         });
     }

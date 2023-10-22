@@ -9,16 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('entreprises', function (Blueprint $table) {
+        Schema::create('etablissements', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nom')->unique();
-            $table->string('representant');
-            $table->string('email')->unique();
-            $table->tinyInteger('stand')->nullable();
-            $table->string('password');
-            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entreprises');
+        Schema::dropIfExists('etablissements');
     }
 };

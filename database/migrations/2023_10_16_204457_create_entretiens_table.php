@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('entretiens', function (Blueprint $table) {
             $table->id();
             $table->string('stagiaire_id');
-            $table->unsignedBigInteger('entreprise_id');
+            $table->string('entreprise_id');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
-
             $table->foreign('stagiaire_id')->references('id')->on('stagiaires');
             $table->foreign('entreprise_id')->references('id')->on('entreprises');
             $table->unique(['stagiaire_id', 'entreprise_id']);

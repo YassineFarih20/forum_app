@@ -4,7 +4,7 @@ use App\Http\Controllers\StagiaireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StagiaireActionController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\StagiaireBackupController;
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\StaticController;
 
 
@@ -42,9 +42,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('/auth', [AdminController::class, "handleLogin"])->name('handleLogin');
     Route::post('/logout', [AdminController::class, "logout"])->name('logout');
     Route::group(['prefix' => 'backup', 'as' => 'backup.'], function () {
-        Route::get('/', [StagiaireBackupController::class, "index"])->name('index');
-        Route::post('/import', [StagiaireBackupController::class, "import"])->name('import');
-        Route::get('/export', [StagiaireBackupController::class, "export"])->name('export');
+        Route::get('/', [BackupController::class, "index"])->name('index');
+        Route::post('/importStagiaires', [BackupController::class, "importStagiaires"])->name('importStagiaires');
+        Route::get('/exportStagiaires', [BackupController::class, "exportStagiaires"])->name('exportStagiaires');
+        Route::post('/importEntreprises', [BackupController::class, "importEntreprises"])->name('importEntreprises');
+        Route::get('/exportEntreprises', [BackupController::class, "exportEntreprises"])->name('exportEntreprises');
     });
 });
 

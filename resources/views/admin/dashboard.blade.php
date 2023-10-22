@@ -7,8 +7,9 @@
         {{ Auth::user()->name }}
         <br>
         <ul>
-            <li><a href="{{ route('stagiaires.index') }}">Stagiaire</a></li>
-            <li><a href="{{ route('admin.backup.index') }}">Stagiaire backup</a></li>
+            <li><a href="{{ route('stagiaires.index') }}">Stagiaire List</a></li>
+            <li><a>Entreprise List</a></li>
+            <li><a href="{{ route('admin.backup.index') }}">Backup</a></li>
         </ul>
         <form action="{{ route('admin.logout') }}" method="POST">
             @csrf
