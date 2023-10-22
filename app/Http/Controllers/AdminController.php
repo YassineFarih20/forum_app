@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function handleLogin(Request $request)
     {
-        return Auth::attempt($request->only('email', 'password')) ? redirect()->route('admin.dashboard') : back()->withErrors(['email' => 'Invalid credentials']);
+        return Auth::attempt($request->only('login', 'password')) ? redirect()->route('admin.dashboard') : back()->withErrors(['login' => 'Invalid credentials']);
     }
 
     public function logout(Request $request)

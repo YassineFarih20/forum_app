@@ -18,15 +18,15 @@ class StagiairesImport implements ToModel
     {
         $stg = new Stagiaire();
         $stg->matricule = $row[0];
-        $stg->CIN = $row[1];
+        $stg->cin = $row[1];
         $stg->email = $row[2];
         $stg->nom = $row[3];
         $stg->prenom = $row[4];
+        $stg->sexe = ['F', 'H'][array_rand(['F', 'H'])];
         $stg->dateNaissance = $row[5];
         $stg->telephone = $row[6];
         $stg->filiere = $row[7];
-        $stg->password = Hash::make($row[8]);
-        $stg->key = $row[9];
+        $stg->password = Hash::make($stg->generatePassword());
         return $stg;
     }
 }

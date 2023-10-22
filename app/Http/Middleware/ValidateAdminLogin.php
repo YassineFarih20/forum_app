@@ -16,7 +16,7 @@ class ValidateAdminLogin
     public function handle(Request $request, Closure $next): Response
     {
         $request->validate([
-            'email' => 'required|email',
+            'login' => 'required',
             'password' => 'required'
         ]);
         return $next($request);
