@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'admins',
     ],
 
     /*
@@ -38,7 +38,15 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admins',
+        ],
+        'stagiaire' => [
+            'driver' => 'session',
+            'provider' => 'stagiaires',
+        ],
+        'entreprise' => [
+            'driver' => 'session',
+            'provider' => 'entreprises',
         ],
     ],
 
@@ -60,10 +68,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => \App\Models\Admin::class,
         ],
+        'stagiaires' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Stagiaire::class,
+        ],
+        'entreprises' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Entreprise::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -91,8 +108,20 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'stagiaires' => [
+            'provider' => 'stagiaires',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'entreprises' => [
+            'provider' => 'entreprises',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
